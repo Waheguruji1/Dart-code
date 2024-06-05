@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Interactive Story Game',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ChapterSelectionScreen(),
+      // Define the routes for each chapter screen
+      routes: {
+        '/chapter1': (context) => ChapterScreen(chapterNumber: 1),
+        '/chapter2': (context) => ChapterScreen(chapterNumber: 2),
+        '/chapter3': (context) => ChapterScreen(chapterNumber: 3),
+        '/chapter4': (context) => ChapterScreen(chapterNumber: 4),
+        '/chapter5': (context) => ChapterScreen(chapterNumber: 5),
+        '/chapter6': (context) => ChapterScreen(chapterNumber: 6),
+        '/chapter7': (context) => ChapterScreen(chapterNumber: 7),
+        '/chapter8': (context) => ChapterScreen(chapterNumber: 8),
+      },
+    );
+  }
+}
+
+class ChapterSelectionScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Select a Chapter'),
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16.0),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+          ),
+          itemCount: 8,
+          itemBuilder: (context, index) {
+            // Use the index to create buttons for each chapter
+            return ElevatedButton(
+              onPressed: () {
+                // Use Navigator.pushNamed to navigate to the corresponding route
+                Navigator.pushNamed(context, '/chapter${index + 1}');
+              },
+              child: Text('Chapter ${index + 1}'),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class ChapterScreen extends StatelessWidget {
+  final int chapterNumber;
+
+  ChapterScreen({required this.chapterNumber});
+
+  @override
+  Widget build(BuildContext context) {
+    // Use the chapterNumber to display the content for the corresponding chapter
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chapter $chapterNumber'),
+      ),
+      body: Center(
+        child: Text('Content for Chapter $chapterNumber'),
+      ),
+    );
+  }
+}
