@@ -1,0 +1,12 @@
+class MyBaseClass {
+  void myMethod() {
+    print("From MyBaseClass");
+  }
+}
+
+class MySubClass extends MyBaseClass {
+  @override
+  void myMethod() {
+    print("Overridden in MySubClass");
+  }
+}
