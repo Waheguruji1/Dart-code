@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Interactive Story Game',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ChapterSelectionScreen(),
+    );
+  }
+}
+
+class ChapterSelectionScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Select a Chapter'),
+        ),
+        body: GridView.builder(
+          padding: const EdgeInsets.all(16.0),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+          ),
+          itemCount: 8,
+          itemBuilder: (context, index) {
+            return ElevatedButton(
+              onPressed: () => _navigateToChapter(context, index + 1),
+              child: Text('Chapter ${index + 1}'),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  void _navigateToChapter(BuildContext context, int chapterNumber) {
+    switch (chapterNumber) {
+      case 1:
+        navigateToChapter1(context);
+        break;
+      case 2:
+        navigateToChapter2(context);
+        break;
+      case 3:
+        navigateToChapter3(context);
+        break;
+      case 4:
+        navigateToChapter4(context);
+        break;
+      case 5:
+        navigateToChapter5(context);
+        break;
+      case 6:
+        navigateToChapter6(context);
+        break;
+      case 7:
+        navigateToChapter7(context);
+        break;
+      case 8:
+        navigateToChapter8(context);
+        break;
+      default:
+        throw Exception('Invalid chapter number');
+    }
+  }
+}
+
+// Define your navigation methods for each chapter
+void navigateToChapter1(BuildContext context) {
+  // Navigation logic for chapter 1
+}
+
+void navigateToChapter2(BuildContext context) {
+  // Navigation logic for chapter 2
+}
+
+// ... Repeat for each chapter
+
+void navigateToChapter8(BuildContext context) {
+  // Navigation logic for chapter 8
+}
