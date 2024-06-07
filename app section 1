@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+class MyGameScreen extends StatefulWidget {
+  @override
+  _MyGameScreenState createState() => _MyGameScreenState();
+}
+
+class _MyGameScreenState extends State<MyGameScreen> {
+  Map<String, String> textMap = {}; // Initialize the map
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTextData(); // Load your text data
+  }
+
+  void _loadTextData() {
+    // ... your code to fetch/load text data into textMap ...
+
+    // Example data:
+    textMap = {
+      'introduction': 'Welcome to the adventure!',
+      'scene1': 'You enter a dark forest...',
+      // ...more text data
+    };
+
+    // Update the UI
+    setState(() {}); 
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(
+          textMap.containsKey('introduction') 
+              ? textMap['introduction']! 
+              : 'Loading...', // Display a placeholder if not ready
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
