@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // For vibration
+import 'package:share_plus/share_plus.dart'; // For sharing content
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Drawer Demo',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool _isVibrationOn = false; // To keep track of the vibration toggle state
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Drawer with SafeArea'),
+      ),
+      drawer: Drawer(
+        // SafeArea ensures the drawer's content is not obscured by system UI
+        child: SafeArea(
+          child: ListView(
+            children: <Widget>[
+              ListTile(
+                title: Text('Toggle Vibration'),
+                trailing: Switch(
+                  value: _isVibrationOn,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _isVibrationOn = value;
+                      if (_isVibrationOn) {
+                        // Trigger a light impact vibration
+                        HapticFeedback.lightImpact();
+                      }
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: Text('Rate Us'),
+                onTap: () {
+                  // Placeholder function for Rate Us action
+                  _rateUs();
+                },
+              ),
+              ListTile(
+                title: Text('More Games'),
+                onTap: () {
+                  // Placeholder function for More Games action
+                  _moreGames();
+                },
+              ),
+              ListTile(
+                title: Text('Share'),
+                onTap: () {
+                  // Share content using the Share plugin
+                  Share.share('Check out this amazing app!');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Center(
+        child: Text('Swipe right to open the drawer.'),
+      ),
+    );
+  }
+
+  void _rateUs() {
+    // Implement your rate us functionality here
+    print('Rate Us tapped');
+  }
+
+  void _moreGames() {
+    // Implement your more games functionality here
+    print('More Games tapped');
+  }
+}
